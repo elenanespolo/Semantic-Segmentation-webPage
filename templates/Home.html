@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <title>Semantic Segmentation</title>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Stile.css') }}">
+    </head>
+
+    <body>
+        <header>
+            <nav id="barra">
+                <div class="logo">
+                    <h1>Semantic Segmentation</h1>
+                </div>
+            </nav>
+        </header>
+
+        <section id="presentation">
+            <div class="container1">
+                <div class="content">
+                    <h1>Welcome to a new era of Computer Vision</h1>
+                    <p>Semantic segmentation is a computer vision task that involves classifying each pixel in an image into a category. This process allows for detailed understanding of the scene, enabling applications such as autonomous driving, medical imaging, and more.</p>
+                </div>
+                <div class="blank"></div>
+            </div>
+            <div class="container2">
+                <div class="blank"></div>
+                <div class="project">
+                    <h1>Our Project, Our Future</h1>
+                    <p>This project focuses on implementing state-of-the-art semantic segmentation algorithms and evaluating their performance on benchmark datasets, such as CityScapes and GTA5.</p>
+                    <p>Here you can find the <a href="{{ url_for('static', filename='MLDL_report.pdf') }}" target="_blank">report</a> and the <a href="https://github.com/OTOTOTO02/MLDL2024_project1" target="_blank">GitHub Repository</a> for the project.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="model">
+            <div class="container">
+                <div class="m">
+                <h2><a href="{{ url_for('models') }}">Let's try our models</a></h2>
+                </div>
+            </div>
+        </section>
+
+        <footer id="footer">
+            <div class="container">
+                <div class="left">
+                    <div class="page">
+                        <p>Find out more <a href="{{ url_for('aboutMe') }}">about me</a></p>
+                    </div>
+                    <div class="social">
+                        <p>Follow me on <a href="https://github.com/elenanespolo" target="_blank">GitHub</a> and <a href="https://www.linkedin.com/in/elena-nespolo-62204934a/" target="_blank">LinkedIn</a></p>
+                    </div>
+                </div>
+                <div class="center">
+                    <p>2024 Semantic Segmentation Project</p>
+                </div>
+                <div class="right">
+                    <img src="{{ url_for('static', filename='logoPolito.png') }}" alt="Logo" width="150">
+                </div>
+            </div>
+        </footer>
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
+    </body>
+</html>

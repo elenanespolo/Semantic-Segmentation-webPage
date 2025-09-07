@@ -1,0 +1,121 @@
+* {
+    margin: 0px;
+    padding: 0;
+}
+html, body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #e4dde6;
+    color: #252525;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+a {
+    color: #252525;
+    text-decoration: underline;
+}
+a:hover {
+    color: #80a636;
+}
+h1, h2 {
+    color: #252525;
+}
+
+#barra {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    font-size: 24px;
+    height: 200px;
+    font-variant: small-caps;
+}
+#barra .logo, #barra .title, #barra .nav-links {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#barra .logo {
+    justify-content: left;
+}
+#barra .logo img{
+    height: 200px;
+    width: 100%;
+    align-items: left;
+}
+#barra .nav-links ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#barra .nav-links ul li {
+    list-style: none;
+    padding: 5px;
+}
+#barra .nav-links {
+    height: 100%;
+    background-color: #804080;
+    flex-grow: 1;
+}
+
+#about {
+    flex: 1;
+}
+#about .container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+#about .container .title {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
+#about .container .content {
+    flex: 10;
+    padding: 20px;
+    line-height: 1.6;
+}
+#about p {
+  margin-bottom: 1.2em; 
+}
+
+#footer {
+    background-color: #464646;
+    padding: 10px 0;
+    color: #e4dde6;
+}
+#footer a {
+    color: #e4dde6;
+    text-decoration: underline;
+}
+#footer a:hover {
+    color: #80a636;
+}
+#footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+#footer .left,
+#footer .center,
+#footer .right {
+    flex: 1;
+}
+#footer .left {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+#footer .right {
+    text-align: right;
+}
+
+

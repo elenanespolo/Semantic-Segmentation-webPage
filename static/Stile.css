@@ -1,0 +1,98 @@
+* {
+    margin: 0px;
+    padding: 0;
+}
+html, body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #804080;
+    color: #e4dde6;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+a {
+    color: #e4dde6;
+    text-decoration: underline;
+}
+a:hover {
+    color: #80a636;
+}
+h1, h2 {
+    color: #252525;
+}
+
+#barra .logo {
+    display: flex;
+    height: 900px;
+    max-width: 1800px;
+    width: 100%;
+    margin: 0 auto;
+    background: url('Logo.png') no-repeat center center/cover;
+    font-size: 24px;
+    justify-content: center;
+    align-items: center;
+}
+#barra .logo h1 {
+    color: #252525;
+    margin-top: 100px;
+    font-variant: small-caps;
+}
+
+#presentation{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+    text-align: center;
+}
+#presentation .container1, #presentation .container2 {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+}
+#presentation .container1 .content, #presentation .container1 .blank, #presentation .container2 .blank, #presentation .container2 .project {
+    flex: 1;
+}
+#presentation h1 {
+    padding: 10px;
+}
+
+#model {
+    flex: 1;
+    padding-bottom: 20px;
+}
+#model a {
+    color: #252525;
+    text-decoration: underline;
+}
+#model a:hover {
+    color: #80a636;
+}
+
+#footer {
+    background-color: #464646;
+    padding: 10px 0;
+}
+#footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+#footer .left,
+#footer .center,
+#footer .right {
+    flex: 1;
+}
+#footer .left {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+#footer .right {
+    text-align: right;
+}
+
+

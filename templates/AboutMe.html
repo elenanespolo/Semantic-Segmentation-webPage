@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <title>Semantic Segmentation Project</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='Stile_AboutMe.css') }}">
+    </head>
+    <body>
+        <header>
+            <nav id="barra">
+                <div class="logo">
+                    <img src="{{ url_for('static', filename='Logo.png') }}" alt="Logo">
+                </div>
+                <div class="title">
+                    <h1>About Me</h1>
+                </div>
+                <div class="nav-links">
+                    <ul>
+                        <li><a href="{{ url_for('home') }}">Home</a></li>
+                        <li><a href="{{ url_for('models') }}">Models</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <section id="about">
+            <div class="container">
+                <div class="title">
+                    <p>Hi! I'm Elena</p>
+                    <img src="{{ url_for('static', filename='girl.gif') }}" alt="Elena" width="200">
+                </div>
+                <div class="content">
+                    <p> I am a passionate student in the field of Data Science and currently enrolled at Politecnico di Torino, where I am deepening my knowledge in machine learning, deep learning and computer vision.</p>
+                    <p>My strong background in mathematics and programming allows me to tackle complex problems and develop innovative solutions, such as the Machine Learning and Deep Learning project proposed to my group, and presented in this application. I have also worked on various projects involving machine learning, linear algebra and numerical analysis techniques, and you can find them on my <a href="https://github.com/elenanespolo" target="_blank">GitHub</a>.</p>
+                    <p>In particular, this project made me approach the vast topic of deep learning and its applications in computer vision. It has been a fascinating journey with my team that has expanded my understanding and skills in this area.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer id="footer">
+        <div class="container">
+                <div class="left">
+                <div class="page">
+                        <p>Try our <a href="{{ url_for('models') }}">models</a></p>
+                    </div>
+                    <div class="social">
+                        <p>Follow me on <a href="https://github.com/elenanespolo" target="_blank">GitHub</a> and <a href="https://www.linkedin.com/in/elena-nespolo-62204934a/" target="_blank">LinkedIn</a></p>
+                    </div>
+                </div>
+                <div class="center">
+                    <p>2024 Semantic Segmentation Project</p>
+                </div>
+                <div class="right">
+                    <img src="{{ url_for('static', filename='logoPolito.png') }}" alt="Logo" width="150">
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
