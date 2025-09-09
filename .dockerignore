@@ -1,0 +1,6 @@
+.git
+__pycache__/
+*.pth
+*.pt
+*.tar.gz
+data/
