@@ -13,6 +13,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
+RUN apt-get update && apt-get install -y git git-lfs \
+    && git lfs install \
+    && git lfs pull
+
 COPY . .
 
 # Espone la porta su cui Flask gira
