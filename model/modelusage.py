@@ -62,7 +62,14 @@ class GTA5Labels_TaskCV2017():
     ]
 
 import os
+
+# Cache globale dei modelli
+_MODEL_CACHE = {}
+
 def load_model(model_name):
+    if model_name in _MODEL_CACHE:
+        return _MODEL_CACHE[model_name]
+
     base_dir = os.path.dirname(os.path.abspath(__file__))
     if model_name == "DeepLabV2":
         model = get_deeplab_v2()
@@ -76,6 +83,8 @@ def load_model(model_name):
     elif model_name == "BiSeNetDACS":
         model = BiSeNet(19, 'resnet18')
         checkpoint_path = os.path.join(base_dir, 'step_4B_DACS_paper_augmentation_epoch_30.pth')
+    else:
+        raise ValueError(f"Unknown model name: {model_name}")
 
     print(f'Loading checkpoint from {checkpoint_path}...')
     checkpoint = torch.load(checkpoint_path, map_location=device)
@@ -85,6 +94,7 @@ def load_model(model_name):
     model.load_state_dict(checkpoint)
 
     model.eval()
+    _MODEL_CACHE[model_name] = model
     return model
 
 device = torch.device('cpu')
