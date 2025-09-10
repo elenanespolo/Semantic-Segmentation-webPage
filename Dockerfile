@@ -19,3 +19,5 @@ EXPOSE 5000
 
 # Avvia Flask
 CMD ["python", "app.py"]
+
+## docker compose up --build  
