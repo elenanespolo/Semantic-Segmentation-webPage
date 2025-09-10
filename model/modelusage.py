@@ -1,14 +1,14 @@
-import numpy as np
-import matplotlib.pyplot as plt
-import torch
-from torchvision.transforms import v2
-import matplotlib.patches as mpatches
-import io
-from PIL import Image
+import numpy as np # type: ignore
+import torch # type: ignore
+from torchvision.transforms import v2 # type: ignore
+from PIL import Image # type: ignore
 from dataclasses import dataclass
 from typing import Tuple
 from model.deeplabv2 import get_deeplab_v2
 from model.build_bisenet import BiSeNet, BiSeNetErr
+import requests
+from requests.exceptions import RequestException
+import os
 
 @dataclass
 class GTA5Label:
@@ -86,6 +86,32 @@ def load_model(model_name):
     else:
         raise ValueError(f"Unknown model name: {model_name}")
 
+    # if the checkpoint file doesn't exist (e.g. on Heroku), try to download it
+    if not os.path.exists(checkpoint_path):
+        # map model_name to expected env var containing download URL
+        env_map = {
+            'DeepLabV2': 'https://drive.google.com/file/d/1oefy4P_BmqmNEY0BHJjGeSK27qrq5D_R/view?usp=sharing',
+            'BiSeNet': 'https://drive.google.com/file/d/1sJoFxnppFj5qxH5_ZDBv7EZ9Op_DthkC/view?usp=sharing',
+            'BiSeNetFDA': 'https://drive.google.com/file/d/14-d4uxo62usUiU1bQcD2Tz8JuHsMUeE0/view?usp=sharing',
+            'BiSeNetDACS': 'https://drive.google.com/file/d/1IqsS_y1Qg5F79R8dXNWY_QbwZt6916Xa/view?usp=sharing'
+        }
+        url_var = env_map.get(model_name)
+        url = os.environ.get(url_var) if url_var else None
+        if url:
+            try:
+                print(f"Downloading checkpoint for {model_name} from {url}...")
+                with requests.get(url, stream=True, timeout=60) as r:
+                    r.raise_for_status()
+                    with open(checkpoint_path, 'wb') as f:
+                        for chunk in r.iter_content(chunk_size=8192):
+                            if chunk:
+                                f.write(chunk)
+                print(f"Downloaded checkpoint to {checkpoint_path}")
+            except Exception as e:
+                raise RuntimeError(f"Failed to download checkpoint for {model_name}: {e}")
+        else:
+            raise FileNotFoundError(f"Checkpoint not found and no download URL provided for {model_name}: {checkpoint_path}")
+
     print(f'Loading checkpoint from {checkpoint_path}...')
     checkpoint = torch.load(checkpoint_path, map_location=device)
     # Se checkpoint è un dict con chiave "model_state_dict", usala
@@ -144,5 +170,4 @@ def segmented_image(img: Image, model_name: str) -> Image.Image:
 
     return segmented_pil
 
-# heroku
 

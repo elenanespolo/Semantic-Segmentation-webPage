@@ -1,5 +1,6 @@
 import torch
 import torch.nn as nn
+import os
 
 affine_par = True
 
@@ -176,6 +177,31 @@ def get_deeplab_v2(num_classes=19, pretrain=True, pretrain_model_path='model/Dee
 
     # Pretraining loading
     if pretrain:
+        # resolve path relative to this file
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        if not os.path.isabs(pretrain_model_path):
+            # take basename to avoid duplicated 'model/model/..'
+            pretrain_model_path = os.path.join(base_dir, os.path.basename(pretrain_model_path))
+
+        # if missing, try to download from env var DEEPLAB_PRETRAINED_URL
+        if not os.path.exists(pretrain_model_path):
+            url = os.environ.get('https://drive.google.com/file/d/10cBkPZu06Kzx4pzsJrlhX-oQHAyvcoO5/view?usp=sharing')
+            if url:
+                try:
+                    import requests
+                    print(f'Downloading Deeplab pretrained weights from {url}...')
+                    with requests.get(url, stream=True, timeout=60) as r:
+                        r.raise_for_status()
+                        with open(pretrain_model_path, 'wb') as f:
+                            for chunk in r.iter_content(chunk_size=8192):
+                                if chunk:
+                                    f.write(chunk)
+                    print(f'Downloaded pretrained weights to {pretrain_model_path}')
+                except Exception as e:
+                    raise RuntimeError(f'Failed to download Deeplab pretrained weights: {e}')
+            else:
+                raise FileNotFoundError(f'Pretrained model not found at {pretrain_model_path} and DEEPLAB_PRETRAINED_URL not set')
+
         print('Deeplab pretraining loading...')
         saved_state_dict = torch.load(pretrain_model_path)
 

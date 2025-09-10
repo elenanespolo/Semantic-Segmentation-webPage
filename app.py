@@ -1,7 +1,7 @@
-from flask import Flask, render_template, request, send_file, jsonify
+from flask import Flask, render_template, request, send_file, jsonify # type: ignore
 from io import BytesIO
 import io
-from PIL import Image
+from PIL import Image # type: ignore
 from model.modelusage import segmented_image  
 import os
 
